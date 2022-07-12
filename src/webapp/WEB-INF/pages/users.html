@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <table th:border="1" th:cellpadding="2">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}" >
+            <td th:text="${user.getId()}" th:style="'font-weight: bold;'"></td>
+            <td th:text="${user.getName()}"></td>
+            <td th:text="${user.getAge()}"></td>
+            <td th:text="${user.getAddress()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
