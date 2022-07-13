@@ -14,19 +14,6 @@ import java.util.List;
 @Component
 @Transactional
 public class UserDAOImp implements UserDAO {
-//    private List<User> users;
-//    private int USERS_COUNT;
-
-//    {
-//        users = new ArrayList<>();
-//
-//        users.add(new User(++USERS_COUNT, "Petr Ivanov", 45, "Omsk"));
-//        users.add(new User(++USERS_COUNT, "Mary Smith", 45, "London"));
-//        users.add(new User(++USERS_COUNT, "Mihail Lomonosov", 45, "Moscow"));
-//        users.add(new User(++USERS_COUNT, "Valery Jakov", 45, "St. Petersburg"));
-//        users.add(new User(++USERS_COUNT, "Alan Daniels", 45, "New York"));
-//    }
-
     @PersistenceContext
     private EntityManager entityManager;
 

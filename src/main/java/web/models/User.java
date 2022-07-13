@@ -1,6 +1,9 @@
 package web.models;
 
+import org.hibernate.Hibernate;
+
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -23,8 +26,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String name, int age, String address) {
-        this.id = id;
+    public User(String name, int age, String address) {
         this.name = name;
         this.age = age;
         this.address = address;
@@ -62,6 +64,4 @@ public class User {
     public void setAddress(String address) {
         this.address = address;
     }
-
-
 }

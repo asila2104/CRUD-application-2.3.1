@@ -4,11 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import web.config.EntityConfig;
+import web.models.User;
 import web.service.UserService;
 import web.service.UserServiceImp;
 
@@ -27,24 +25,21 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("/{id}")
-    public String showUserById(Model model, @PathVariable("id") int id) {
-        model.addAttribute("users", userService.findUserById(id));
-
-        return "users";
+    @PostMapping()
+    public String addUser(@ModelAttribute("user") User user) {
+        userService.addUser(user);
+        return "redirect:/users";
     }
 
-    @GetMapping("/remove")
-    public String removeUser(@RequestParam(name = "id", required = false) int id, Model model) {
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable("id") int id) {
         userService.removeUser(id);
-        model.addAttribute("users", userService.showUsers());
-        return "users";
+        return "redirect:/users";
     }
 
-    @GetMapping("/add")
-    public String addUser(@RequestParam(name = "id", required = false) int id, Model model) {
-        userService.removeUser(id);
-        model.addAttribute("users", userService.showUsers());
-        return "users";
+    @PatchMapping("/edit")
+    public String editUser(@ModelAttribute("user") User user) {
+        userService.updateUser(user);
+        return "redirect:/users";
     }
 }
