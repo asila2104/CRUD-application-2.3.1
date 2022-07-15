@@ -1,6 +1,7 @@
 package web.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import web.models.User;
@@ -13,35 +14,5 @@ import java.util.List;
 
 @Component
 @Transactional
-public class UserDAOImp implements UserDAO {
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    @Override
-    public List<User> showUsers() {
-        return entityManager.createQuery("SELECT user FROM User user", User.class).getResultList();
-    }
-
-    @Override
-    public void addUser(User user) {
-        entityManager.persist(user);
-    }
-
-    @Override
-    public void removeUser(int id) {
-        entityManager.remove(findUserById(id));
-
-    }
-
-    @Override
-    public void updateUser(User user) {
-        entityManager.merge(user);
-    }
-
-    @Override
-    public User findUserById(int id) {
-        return entityManager.find(User.class, id);
-    }
-
-
+public interface UserDAOImp extends JpaRepository<User, Integer> {
 }

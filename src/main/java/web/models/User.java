@@ -1,10 +1,11 @@
 package web.models;
 
-import org.hibernate.Hibernate;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Objects;
 
+@Data
 @Entity
 @Table(name = "users")
 public class User {

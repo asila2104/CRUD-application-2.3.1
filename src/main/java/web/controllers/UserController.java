@@ -1,21 +1,20 @@
 package web.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import web.config.EntityConfig;
 import web.models.User;
 import web.service.UserService;
-import web.service.UserServiceImp;
 
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping(value = "/users")
 public class UserController {
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
 
     @GetMapping()
@@ -37,9 +36,9 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @PatchMapping("/edit")
-    public String editUser(@ModelAttribute("user") User user) {
-        userService.updateUser(user);
+    @PatchMapping("/{id}")
+    public String editUser(@PathVariable("id") int id, @ModelAttribute("user") User user) {
+        userService.updateUser(id, user);
         return "redirect:/users";
     }
 }
