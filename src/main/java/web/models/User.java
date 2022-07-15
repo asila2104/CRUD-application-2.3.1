@@ -11,18 +11,13 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private int id;
 
-    @Column
     private String name;
 
-    @Column
     private int age;
 
-    @Column
     private String address;
-
     public User() {
     }
 
@@ -63,5 +58,26 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return age == user.age && name.equals(user.name) && Objects.equals(address, user.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age, address);
+    }
+
+    @Override
+    public String toString() {
+        return  "id = " + id +
+                ", name = " + name +
+                ", age = " + age +
+                ", address = " + address;
     }
 }
