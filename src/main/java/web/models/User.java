@@ -1,11 +1,8 @@
 package web.models;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.util.Objects;
 
-@Data
 @Entity
 @Table(name = "users")
 public class User {
